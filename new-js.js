@@ -1,6 +1,20 @@
 window.onload = function () {
     portraitLandscape();
 
+
+    $.getJSON('socials.json', function (data) {
+        data.forEach(function (item) {
+            const $a = $('<a>', {
+                href: item.href,
+                class: item.class,
+                'data-tileName': item.tileName,
+                html: $('<i>', { class: item.icon })
+            });
+            $('#socialList').append($a);
+        });
+    });
+
+
     $.getJSON('projects.json', function (data) {
         function createProjectBox(project, projectType) {
             return $('<div class="projectBox"></div>')
